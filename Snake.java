@@ -8,13 +8,12 @@ public class Snake {
 			Model model = new Model();
 			view.setGridView(model.getGrid());
 
+			Controller controller = new Controller(view, model);
+			view.addKeyListener(controller);
 
-			Controller controller = new Controller(model, view);
-
-			Runnable thread = new ThreadSnake(model, view);
-
-			
-			thread.start();
-
+		
+			Runnable runnable = new ThreadSnake(view, model);
+	        Thread thread = new Thread(runnable);
+	        thread.start();
 	}
 }
