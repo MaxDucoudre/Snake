@@ -25,17 +25,27 @@
 			this.spawnBonus();
 		}
 
+
+
 		public void spawnBonus() {
-			int i;
+			int i,j;
 			int spawnX, spawnY;
 			Random random = new Random();
+			int bonusNumber = 0;
+			for(i = 0; i<grid.length; i++) {
+				for(j = 0; j<grid[0].length; j++) {
+					if(this.grid[i][j] == 'B') {
+						bonusNumber++;
+					}
+				}
+			}
 
-			for(i = 0; i<this.numberMaxOfBonus; i++) {
+			for(i = 0; i<this.numberMaxOfBonus-bonusNumber; i++) {
 
 				spawnX = random.nextInt(24);
 				spawnY = random.nextInt(24);
 
-				while(grid[spawnX][spawnY] != 'V') {
+				while(grid[spawnX][spawnY] != 'V' || grid[spawnX][spawnY] != 'S') {
 					spawnX = random.nextInt(24);
 					spawnY = random.nextInt(24);
 				}
@@ -66,7 +76,7 @@
 				newPiece.x = parentPiece.x-1;
 				newPiece.y = parentPiece.y; 
 			}
-
+			this.spawnBonus();
 		}
 
 		public boolean checkCollision() {
@@ -116,7 +126,7 @@
 			int i,j;
 			SnakePiece headSnake = this.snake.get(0);
 
-			if(headSnake.x > 0 || headSnake.y > 0 || headSnake.x < 24 || headSnake.y < 24) {
+			try {
 				if(this.direction == Movement.UP) {
 					if(this.grid[headSnake.x-1][headSnake.y] == 'B') {
 						this.eatBonus();
@@ -124,7 +134,7 @@
 					headSnake.x = headSnake.x-1;
 
 				} else if(this.direction == Movement.DOWN) {
-					if(this.grid[bodyFollowHeaddSnake.x+1][headSnake.y] == 'B') {
+					if(this.grid[headSnake.x+1][headSnake.y] == 'B') {
 						this.eatBonus();
 					}
 					headSnake.x = headSnake.x+1;
@@ -142,9 +152,17 @@
 					headSnake.y = headSnake.y+1;
 
 				}
+
+
+				this.bodyFollowHead();
+				this.updateSnakeGrid();	
+			} catch(ArrayIndexOutOfBoundsException e) {
+				this.gameOver();
 			}
-			this.bodyFollowHead();
-			this.updateSnakeGrid();	
+		}
+
+		public void gameOver() {
+			System.out.println("Game over!");
 		}
 
 		public void setDirection(Movement direction) {
