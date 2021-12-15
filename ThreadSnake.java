@@ -15,7 +15,7 @@ public class ThreadSnake implements Runnable {
 
 		while(this.model.checkCollision() == false) {
 			try {
-				Thread.sleep(500);
+				Thread.sleep(250);
 			} catch(InterruptedException e) {
 				System.out.println(e);
 			}

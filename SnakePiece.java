@@ -1,14 +1,7 @@
 public class SnakePiece {
-	int coordX,coordY;
+	public int x,y;
 	public SnakePiece(int coordX, int coordY) {
-		this.coordX = coordX;
-		this.coordY = coordY;
-	}
-
-	public int getCoordX() {
-		return this.coordX;
-	}
-	public int getCoordY() {
-		return this.coordY;
+		this.x = coordX;
+		this.y = coordY;
 	}
 }
