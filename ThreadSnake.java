@@ -1,4 +1,6 @@
 import java.lang.*;
+import javax.swing.*;
+import java.awt.*;
 public class ThreadSnake implements Runnable {
 
 	private Window view;
@@ -16,7 +18,7 @@ public class ThreadSnake implements Runnable {
 		while(this.model.isOver() == false) {
 			try {
 
-				Thread.sleep(250 - this.model.getScore());
+				Thread.sleep(200 - this.model.getScore());
 			} catch(InterruptedException e) {
 				System.out.println(e);
 			}
@@ -27,9 +29,9 @@ public class ThreadSnake implements Runnable {
 		System.out.println("End of game!");
 		JFrame gameOverFrame = new JFrame("Game Over");
 		gameOverFrame.setLayout(new BorderLayout());
-		gameOverFrame.add(new JLabel("Game Over"),BorderLayout.CENTER);
+		gameOverFrame.add(new JLabel("Game Over"),BorderLayout.NORTH);
 		JButton tryAgain = new JButton("Try again");
-		gameOverFrame.add(tryAgain,BorderLayout.SOUTH);
+		gameOverFrame.add(tryAgain, BorderLayout.CENTER);
 
 
 		

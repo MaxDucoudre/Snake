@@ -1,6 +1,6 @@
 	import java.lang.*;
 	import java.util.*;
-
+	import java.io.*;
 	public class Model {
 		private char[][] grid;
 		private int numberMaxOfBonus;
@@ -67,6 +67,8 @@
 
 				this.grid[spawnX][spawnY] = 'B';
 			}
+
+
 		}
 
 		public void eatBonus() {
@@ -124,6 +126,9 @@
 				piece = it.next();
 				this.grid[piece.x][piece.y] = 'S';
 			}
+
+			piece = this.snake.get(0);
+			this.grid[piece.x][piece.y] = 'H';
 
 		}
 
@@ -197,8 +202,40 @@
 			}
 		}
 
+		public String getHightScore() {
+			String data = "";
+			try {
+		      File myObj = new File("./hightscore");
+		      Scanner myReader = new Scanner(myObj);
+		      while (myReader.hasNextLine()) {
+		        data = myReader.nextLine();
+		      }
+		      myReader.close();
+		    } catch (FileNotFoundException e) {
+		      
+		    }
+		    return data;
+		}
+
+		public void setHightScore(int score) {
+			try {
+		      FileWriter myWriter = new FileWriter("./hightscore");
+		      myWriter.write(String.valueOf(score));
+		      myWriter.close();
+		      System.out.println("Successfully wrote to the file.");
+		    } catch (IOException e) {
+		      System.out.println("An error occurred.");
+		      e.printStackTrace();
+		    }
+		}
+
+
 		public void gameOver() {
 			System.out.println("Game over!");
+
+			if(Integer.parseInt(this.getHightScore()) < this.score) {
+				this.setHightScore(this.score);
+			}
 			this.lost = true;
 
 		}

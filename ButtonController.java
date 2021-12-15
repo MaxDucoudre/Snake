@@ -6,9 +6,14 @@ import java.util.*;
 
 public class ButtonController implements ActionListener {
 
-	private JButton button;
+	private JButton tryAgain;
 	
 	public ButtonController(JButton button) {
 		this.tryAgain = button;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
 	}
 }

@@ -8,6 +8,8 @@ public class Window extends JFrame {
 	private JLabel scoreLabel;
 	private int gridHeight;
 	private int gridWidth;
+	private JLabel hightScoreLabel;
+
 	public Window(int gridWidth, int gridHeight) {
 		super();
 		this.setSize(700, 700);
@@ -22,10 +24,17 @@ public class Window extends JFrame {
 		this.add(gridPanel, BorderLayout.CENTER);
 
 		JPanel headerPanel = new JPanel();
-		headerPanel.setLayout(new GridLayout(3,1));
-		this.scoreLabel = new JLabel("Score : 0");
-		headerPanel.setBackground(Color.YELLOW);
+		headerPanel.setLayout(new GridLayout(2,1));
+
+		this.scoreLabel = new JLabel("Score : 0",  SwingConstants.CENTER);
+		headerPanel.setBackground(Color.ORANGE);
 		headerPanel.add(scoreLabel);
+
+		hightScoreLabel = new JLabel("Hight score : 0",  SwingConstants.CENTER);
+		headerPanel.add(hightScoreLabel);
+
+
+
 		this.add(headerPanel, BorderLayout.NORTH);
 
 		int i,j;
@@ -44,6 +53,10 @@ public class Window extends JFrame {
 		}
 	}
 
+	public void setHightScore(String hightScore) {
+		this.hightScoreLabel.setText("Hight score : " + hightScore);
+	}
+
 	public void setGridView(char[][] grid) {
 		int i,j;
 
@@ -55,9 +68,13 @@ public class Window extends JFrame {
 				this.labels[i][j].setBackground(Color.ORANGE);
 				} else if(grid[i][j] == 'B') {
 				this.labels[i][j].setBackground(Color.RED);
+				} else if(grid[i][j] == 'H') { 
+				this.labels[i][j].setBackground(Color.DARK_GRAY);
+
 				}
 			}
 		}
+
 		this.gridPanel.updateUI();
 
 	}
