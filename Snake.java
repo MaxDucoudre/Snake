@@ -3,10 +3,11 @@ public class Snake {
 		public static void main(String[] args) {
 
 			// Configuration de la partie
-			boolean enable_bot = true;
-			int gridWidth = 25;
-			int gridHeight = 25;
-			int bonusNumber = 3;
+			boolean enable_bot = false;
+			int gridWidth = 10;
+			int gridHeight = 10	;
+			int bonusNumber = 5;
+			long int snakeSpeed = 100;
 			//
 
 			Window view = new Window(gridWidth,gridHeight);

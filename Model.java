@@ -9,8 +9,8 @@
 		private boolean lost;
 		private int score;
 
-		private int gridWidth = 25;
-		private int gridHeight = 25;
+		private int gridWidth;
+		private int gridHeight;
 
 
 		public Model(int gridWidth, int gridHeight, int numberOfBonus) {
@@ -32,7 +32,7 @@
 				}
 			}
 			this.snake = new ArrayList<SnakePiece>();
-			this.snake.add(0, new SnakePiece(12,13));
+			this.snake.add(0, new SnakePiece(gridWidth/2,gridHeight/2));
 
 			this.spawnBonus();
 
@@ -261,4 +261,15 @@
 			return this.score;
 		}
 
+		public SnakePiece getSnakeHead() {
+			return this.snake.get(0);
+
+		}
+
+		public int getGridWidth() {
+			return this.gridWidth;
+		}
+		public int getGridHeight() {
+			return this.gridHeight;
+		}
 	}

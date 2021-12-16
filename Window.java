@@ -42,8 +42,8 @@ public class Window extends JFrame {
 		this.labels = new JLabel[this.gridWidth][this.gridHeight];
 
 
-		for(i = 0; i < 25; i++) {
-			for(j = 0; j < 25; j++) {
+		for(i = 0; i < this.gridWidth; i++) {
+			for(j = 0; j < this.gridHeight; j++) {
 				this.labels[i][j] = new JLabel();
 				this.labels[i][j].setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.WHITE));
 				this.labels[i][j].setBackground(Color.GREEN);
